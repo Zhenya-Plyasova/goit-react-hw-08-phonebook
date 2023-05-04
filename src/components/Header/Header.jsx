@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { getNewsThunk } from '../../store/news/thunk';
 // import { logOut } from '../../store/auth/slice';
 // import { dellToken } from '../../services/auth-service';
@@ -10,8 +10,6 @@ import {
   Button,
   Container,
   IconButton,
-  Menu,
-  MenuItem,
   Toolbar,
   Typography,
 } from '@mui/material';
@@ -21,10 +19,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { clearToken, logOut } from 'redux/servises/authentification';
 
 export const Header = () => {
-    const { user, token, isLoggedIn } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.auth);
     const navigate = useNavigate();
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [ setAnchorElNav] = useState(null);
 //   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
