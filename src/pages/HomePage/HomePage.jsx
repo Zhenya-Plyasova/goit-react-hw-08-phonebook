@@ -19,7 +19,7 @@ const HomePage = () => {
             textDecoration: 'none',
           }}
         >
-          Phonebook welcome page
+          Welcome to the Phonebook! <br/>Please, log in to use it
         </Typography>
         <Typography
           variant="h5"
@@ -37,7 +37,7 @@ const HomePage = () => {
             textDecoration: 'none',
           }}
         >
-          Phonebook welcome page
+          Welcome to Phonebook! Please, log in to use it
         </Typography>
       </div>
     );

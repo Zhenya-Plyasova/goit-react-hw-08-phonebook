@@ -31,7 +31,7 @@ export const AuthorizationForm = () => {
         dispatch(logIn(userAuthData))
             // .then(() => {
             //     console.log("user logged in");
-        navigate('/phonebook');
+        navigate('/');
     // })
             // .catch((error)=>console.log(error));
             
@@ -50,8 +50,6 @@ export const AuthorizationForm = () => {
           id="outlined-basic"
           label="e-mail"
           variant="outlined"
-          //   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          //   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={handleChange}
           value={email}
@@ -64,9 +62,7 @@ export const AuthorizationForm = () => {
           id="outlined-basic"
           label="password"
           variant="outlined"
-          //   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          //   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
+           required
           onChange={handleChange}
           value={password}
           margin="normal"

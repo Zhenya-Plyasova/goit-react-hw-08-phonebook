@@ -6,6 +6,7 @@ const authInitialState = {
     token: null,
     isLoggedIn: false,
     error: null,
+    isRefreshing: false,
 };
 const handleRejected = (state, { payload }) => {
     state.isLoggedIn = false;
@@ -28,12 +29,16 @@ export const authSlice = createSlice({
                 state.token = null;
                 state.isLoggedIn = false;
             })
+            .addCase(getCurrentUser.pending, (state) => {
+                state.isRefreshing = true;
+            })
             .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
                 state.user = payload.user;
-                state.isLoggedIn = true;            
+                state.isLoggedIn = true; 
+                state.isRefreshing = false;
             })
             .addCase(getCurrentUser.rejected, (state, { payload }) => {
-                state.token = null;
+                state.isRefreshing = false;
                 state.error = payload.error;
             })
             .addCase(logOut.rejected, (state, { payload }) => {

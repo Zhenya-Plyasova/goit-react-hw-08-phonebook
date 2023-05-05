@@ -43,24 +43,43 @@ export const logIn = createAsyncThunk(
         }
     });
 
+// export const getCurrentUser = createAsyncThunk(
+//     'auth/getUser',
+//     async (token, thunkAPI) => {
+//         try {
+//             setToken(token);
+//             const response = await instance.get('/users/current', token);
+//             return response.data;
+//         } catch (error) {
+//             setToken();
+//             return thunkAPI.rejectWithValue(error.message);
+//         }
+//     });
+
 export const getCurrentUser = createAsyncThunk(
-    'auth/getUser',
-    async (token, thunkAPI) => {
-        try {
-            setToken(token);
-            const response = await instance.get('/users/current', token);
-            return response.data;
-        } catch (error) {
-            setToken();
-            return thunkAPI.rejectWithValue(error.message);
-        }
-    });
+  'auth/getCurrentUser',
+  async (_, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setToken(persistedToken);
+      const response = await axios.get('/users/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logOut = createAsyncThunk(
     'auth/logOut',
     async (token, thunkAPI) => {
         try {
-            await instance.post('user/logout', token);
+            await instance.post('users/logout', token);
             clearToken();
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

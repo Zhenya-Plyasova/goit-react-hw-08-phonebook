@@ -2,13 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-// import HomePage from 'pages/HomePage/HomePage';
-// import { Phonebook } from 'pages/Phonebook';
-import Layout from './Layout/Layout';
 import { useDispatch } from 'react-redux';
+
+import Layout from './Layout/Layout';
 import { getCurrentUser } from 'redux/servises/authentification';
-// import { Authorization } from 'pages/Authorization';
-// import { Registration } from 'pages/Registration';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const Phonebook = lazy(() => import('pages/Phonebook'));
@@ -23,7 +20,6 @@ export const App = () => {
 
  }, [dispatch])
  
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
