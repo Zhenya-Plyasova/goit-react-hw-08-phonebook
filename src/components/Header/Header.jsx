@@ -181,28 +181,32 @@ export const Header = () => {
               {/* Welcome, {user.name} */}
               {/* </Typography> */}
               {/* )} */}
-              <Button
-                role="link"
-                sx={{
-                  my: 2,
-                  color: 'white',
-                  display: 'block',
-                }}
-                onClick={handleLogin}
-              >
-                 LogIn
-              </Button>
-              <Button
-                role="link"
-                sx={{
-                  my: 2,
-                  color: 'white',
-                  display: 'block',
-                }}
-                onClick={handleLogOut}
-              >
-LogOut
-              </Button>
+              {!user && (
+                <Button
+                  role="link"
+                  sx={{
+                    my: 2,
+                    color: 'white',
+                    display: 'block',
+                  }}
+                  onClick={handleLogin}
+                >
+                  LogIn
+                </Button>
+              )}
+              {user && (
+                <Button
+                  role="link"
+                  sx={{
+                    my: 2,
+                    color: 'white',
+                    display: 'block',
+                  }}
+                  onClick={handleLogOut}
+                >
+                  LogOut
+                </Button>
+              )}
             </Box>
           </Toolbar>
         </Container>

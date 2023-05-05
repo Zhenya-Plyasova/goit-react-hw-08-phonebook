@@ -38,6 +38,7 @@ export const App = () => {
         />
         <Route path="signup" element={<Registration />} />
       </Route>
+      <Route path="*" element={<Layout />} />
     </Routes>
   );
 };
