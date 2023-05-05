@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 // import HomePage from 'pages/HomePage/HomePage';
 // import { Phonebook } from 'pages/Phonebook';
 import Layout from './Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { getCurrentUser } from 'redux/servises/authentification';
 // import { Authorization } from 'pages/Authorization';
 // import { Registration } from 'pages/Registration';
 
@@ -14,6 +16,14 @@ const Registration = lazy(() => import('pages/Registration'));
 const Authorization = lazy(() => import('pages/Authorization'));
 
 export const App = () => {
+
+  const dispatch = useDispatch();
+ useEffect(() => {
+   dispatch(getCurrentUser());
+
+ }, [dispatch])
+ 
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

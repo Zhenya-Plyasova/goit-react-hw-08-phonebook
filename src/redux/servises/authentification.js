@@ -45,9 +45,10 @@ export const logIn = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk(
     'auth/getUser',
-    async (body, thunkAPI) => {
+    async (token, thunkAPI) => {
         try {
-            const response = await instance.get('/users/current', body);
+            setToken(token);
+            const response = await instance.get('/users/current', token);
             return response.data;
         } catch (error) {
             setToken();

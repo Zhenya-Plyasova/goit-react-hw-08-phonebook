@@ -32,8 +32,12 @@ export const authSlice = createSlice({
                 state.user = payload.user;
                 state.isLoggedIn = true;            
             })
+            .addCase(getCurrentUser.rejected, (state, { payload }) => {
+                state.token = null;
+                state.error = payload.error;
+            })
             .addCase(logOut.rejected, (state, { payload }) => {
-                state.error = { payload };
+                state.error = payload.error;
             })
             .addMatcher(
 				isAnyOf(logIn.rejected, signUp.rejected),
