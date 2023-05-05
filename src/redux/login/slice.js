@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { logOut, signIn, signUp, getCurrentUser } from "redux/servises/authentification";
+import { logOut, logIn, signUp, getCurrentUser } from "redux/servises/authentification";
 
 const authInitialState = {
     user: null,
-    token: '',
+    token: null,
     isLoggedIn: false,
     error: null,
 };
@@ -22,18 +22,21 @@ export const authSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(signUp.fulfilled, handleFulfilled) 
-            .addCase(signIn.fulfilled, handleFulfilled)
+            .addCase(logIn.fulfilled, handleFulfilled)
             .addCase(logOut.fulfilled, (state) => {
-                state.user = { name: null, email: null };
-                state.token = '';
+                state.user = null;
+                state.token = null;
                 state.isLoggedIn = false;
             })
             .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
                 state.user = payload.user;
                 state.isLoggedIn = true;            
             })
+            .addCase(logOut.rejected, (state, { payload }) => {
+                state.error = { payload };
+            })
             .addMatcher(
-				isAnyOf(signIn.rejected, signUp.rejected),
+				isAnyOf(logIn.rejected, signUp.rejected),
 				handleRejected
         )
             // .addMatcher(

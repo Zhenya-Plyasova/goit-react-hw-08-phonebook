@@ -2,7 +2,7 @@ import { TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { signIn } from 'redux/servises/authentification';
+import { logIn } from 'redux/servises/authentification';
 
 export const AuthorizationForm = () => {
     const [email, setEmail] = useState('');
@@ -28,10 +28,10 @@ export const AuthorizationForm = () => {
           email: e.target.elements.email.value,
           password: e.target.elements.password.value,
         };
-        dispatch(signIn(userAuthData))
+        dispatch(logIn(userAuthData))
             // .then(() => {
             //     console.log("user logged in");
-        navigate('/');
+        navigate('/phonebook');
     // })
             // .catch((error)=>console.log(error));
             

@@ -138,13 +138,15 @@ export const Header = () => {
               >
                 Home
               </Button>
-             {user&& <Button
-                role="link"
-                onClick={handlePhoneBook}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Phonebook
-              </Button>}
+              {user && (
+                <Button
+                  role="link"
+                  onClick={handlePhoneBook}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Phonebook
+                </Button>
+              )}
 
               {!user && (
                 <Button
@@ -186,9 +188,20 @@ export const Header = () => {
                   color: 'white',
                   display: 'block',
                 }}
-                onClick={user ? handleLogOut : handleLogin}
+                onClick={handleLogin}
               >
-                {user ? 'LogOut' : 'LogIn'}
+                 LogIn
+              </Button>
+              <Button
+                role="link"
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                }}
+                onClick={handleLogOut}
+              >
+LogOut
               </Button>
             </Box>
           </Toolbar>
