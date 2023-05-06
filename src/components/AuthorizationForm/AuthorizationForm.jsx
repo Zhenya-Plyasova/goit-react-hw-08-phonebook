@@ -29,12 +29,8 @@ export const AuthorizationForm = () => {
           password: e.target.elements.password.value,
         };
         dispatch(logIn(userAuthData))
-            // .then(() => {
-            //     console.log("user logged in");
-        navigate('/');
-    // })
-            // .catch((error)=>console.log(error));
-            
+        navigate('/phonebook');
+    
         setEmail('');
         setPassword('');
     }

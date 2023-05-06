@@ -19,7 +19,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { clearToken, logOut } from 'redux/servises/authentification';
 
 export const Header = () => {
-    const { user } = useSelector(state => state.auth);
+    const { user, token } = useSelector(state => state.auth);
     const navigate = useNavigate();
 
   const [ setAnchorElNav] = useState(null);
@@ -138,7 +138,7 @@ export const Header = () => {
               >
                 Home
               </Button>
-              {user && (
+              {token && (
                 <Button
                   role="link"
                   onClick={handlePhoneBook}
@@ -148,7 +148,7 @@ export const Header = () => {
                 </Button>
               )}
 
-              {!user && (
+              {!token && (
                 <Button
                   role="link"
                   sx={{
@@ -181,7 +181,7 @@ export const Header = () => {
               {/* Welcome, {user.name} */}
               {/* </Typography> */}
               {/* )} */}
-              {!user && (
+              {!token && (
                 <Button
                   role="link"
                   sx={{
@@ -194,7 +194,7 @@ export const Header = () => {
                   LogIn
                 </Button>
               )}
-              {user && (
+              {token && (
                 <Button
                   role="link"
                   sx={{

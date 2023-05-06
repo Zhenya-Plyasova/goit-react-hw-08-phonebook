@@ -31,9 +31,10 @@ export const authSlice = createSlice({
             })
             .addCase(getCurrentUser.pending, (state) => {
                 state.isRefreshing = true;
+                state.error = null;
             })
             .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
-                state.user = payload.user;
+                state.user = payload;
                 state.isLoggedIn = true; 
                 state.isRefreshing = false;
             })
@@ -48,9 +49,6 @@ export const authSlice = createSlice({
 				isAnyOf(logIn.rejected, signUp.rejected),
 				handleRejected
         )
-            // .addMatcher(
-            //     isAnyOf(signIn.pending)
-            // )
     }
 });
 
